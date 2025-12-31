@@ -1,9 +1,3 @@
-export type InitTicketProps = {
-    id : string,
-    title : string,
-    content: string,
-    status : string
-}
 
 export const initialTicket = [
   {
