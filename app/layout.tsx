@@ -6,6 +6,7 @@ import { homePath, ticketsPath } from "./data/paths";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { LucideKanban } from "lucide-react";
 import { AppHeader } from "@/components/header";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +33,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ThemeProvider>
         <AppHeader />
-        <div className="py-10 px-10">
+        <div className="py-10 px-10 pt-16">
           {children}
         </div>
+        </ThemeProvider>
       </body>
     </html>
   );

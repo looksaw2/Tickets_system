@@ -1,4 +1,4 @@
-"use client";
+
 import Link from "next/link";
 import { initialTicket } from "../data/data";
 import { ticketPath } from "../data/paths";
@@ -9,6 +9,12 @@ import { Separator } from "@/components/ui/separator";
 import { LucideCircleCheck, LucideFileText, LucidePencil } from "lucide-react";
 import { Heading } from "@/components/heading";
 import { TicketItem } from "../features/ticket/components/ticket-item";
+//import { useEffect, useState } from "react";
+import { Ticket } from "../features/ticket/types";
+import { getTickets } from "../features/ticket/queries/get-tickets";
+import { Suspense } from "react";
+import { TicketList } from "../features/ticket/components/ticket-list";
+import { Spinner } from "@/components/spinner";
 
 
 
@@ -18,16 +24,22 @@ const ICON1 = {
     "DONE" : <LucideCircleCheck />
 }
 
-const Tickets = () => {
+const Tickets =  () => {
+    //const [tickets,setTickets] = useState<Ticket[]>([])
+    //const tickets = await getTickets()
+    //useEffect(()=>{
+    //    const fetchTickets = async () => {
+    //        const result = await getTickets()
+    //        setTickets(result)
+    //    }
+    //    fetchTickets()
+    //},[])
     return(
         <div className="flex-1 flex flex-col gap-y-8">
             <Heading title="All Tickets" description="Here is All Your Tickets" />
-
-            <div className="flex-1 flex flex-col items-center gap-y-4 fade-in-from-top">
-            {initialTicket.map(ticket => (
-                <TicketItem key={ticket.id} ticket={ticket} />
-            ))}
-            </div>
+            <Suspense fallback={<Spinner />}>
+                <TicketList />
+            </Suspense>
         </div>
     )
 }

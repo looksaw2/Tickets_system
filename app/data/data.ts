@@ -1,5 +1,6 @@
+import { Ticket } from "../features/ticket/types";
 
-export const initialTicket = [
+export const initialTicket : Ticket[] = [
   {
     "id": "TKT001",
     "title": "Login Page Loading Issue",
